@@ -68,9 +68,8 @@ function removeItem(id) {
 }
 
 function applyPromo() {
-  if ((promoInput.value = "SALE10")) {
-    discount = 0.1;
-  }
+  discount = promoInput.value.trim() === "SALE10" ? 0.1 : 0;
+
   renderCart();
 }
 
