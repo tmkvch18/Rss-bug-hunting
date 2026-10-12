@@ -31,7 +31,6 @@ function renderProducts() {
 }
 
 function addToCart(id) {
-  console.log(id);
   const product = products.find((p) => p.id === id);
   if (!product) {
     return;
@@ -84,7 +83,7 @@ function renderCart() {
   cartItemsEl.innerHTML = "";
   let total = "";
   cart.forEach((item) => {
-    const lineTotal = item.price;
+    const lineTotal = item.price * +item.qty;
     const li = document.createElement("li");
     li.className = "cart-item";
     li.innerHTML = `<span>${item.name}</span>
