@@ -31,12 +31,21 @@ function renderProducts() {
 }
 
 function addToCart(id) {
-  console.log(id)
+  console.log(id);
   const product = products.find((p) => p.id === id);
   if (!product) {
     return;
   }
-  cart.push({ id: product.id, name: product.name, price: product.price, qty: 1 });
+  if (!cart.find((p) => p.id === id)) {
+    cart.push({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      qty: 1,
+    });
+  } else {
+    increaseQty(id);
+  }
   renderCart();
 }
 
@@ -82,9 +91,15 @@ function renderCart() {
       <button class="qty-btn" data-act="inc">+</button>
       <span class="line">${lineTotal} ₽</span>
       <button class="remove">✕</button>`;
-    li.querySelector('[data-act="inc"]').addEventListener("click", () => increaseQty(item.id));
-    li.querySelector('[data-act="dec"]').addEventListener("click", () => decreaseQty(item.id));
-    li.querySelector(".remove").addEventListener("click", () => removeItem(item.id));
+    li.querySelector('[data-act="inc"]').addEventListener("click", () =>
+      increaseQty(item.id),
+    );
+    li.querySelector('[data-act="dec"]').addEventListener("click", () =>
+      decreaseQty(item.id),
+    );
+    li.querySelector(".remove").addEventListener("click", () =>
+      removeItem(item.id),
+    );
     cartItemsEl.appendChild(li);
     total += item.price * item.qty;
   });
