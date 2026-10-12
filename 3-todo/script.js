@@ -23,10 +23,8 @@ function addTask() {
 }
 
 function toggleTask(id) {
-  console.log(id)
   const task = tasks.find((t) => t.id === id);
-  task.done = true;
-  console.log(task.done)
+  task.done = !task.done;
   render();
 }
 
@@ -57,7 +55,6 @@ function render() {
     if (task.done) {
       li.classList.add("done");
     }
-    console.log(li)
 
     const span = document.createElement("span");
     span.className = "task__text";
