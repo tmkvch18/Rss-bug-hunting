@@ -36,6 +36,7 @@ function getFiltered() {
     result.sort((a, b) => a.price - b.price);
   }
 
+  grid.replaceChildren();
   return result;
 }
 
